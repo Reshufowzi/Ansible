@@ -10,4 +10,16 @@ managed node
 sudo yum update -y
 sudo yum install python3-pip -y
 
+[web]
+172.31.89.251
+172.31.90.183
+
+vi inventory.txtansible web -i inventory.txt -m ping
+cat inventory.txt
+ansible web -i inventory.txt -m yum -a "name=httpd state=present" -b
+ansible web -i inventory.txt -m service -a "name=httpd state=started" -b
+cat inventory.txt
+  
+
+
 
