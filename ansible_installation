@@ -23,6 +23,10 @@ ansible web -i inventory.txt -m yum -a "name=httpd state=present" -b
 ansible web -i inventory.txt -m service -a "name=httpd state=started" -b
 cat inventory.txt
 
+create the playbook newplay.yaml
+
+execute command - ansible-playbook -i inventory.txt newplay.yaml
+
 - name: install the httpd and then start
   hosts: all
   become: yes
