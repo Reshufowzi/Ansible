@@ -22,6 +22,22 @@ cat inventory.txt
 ansible web -i inventory.txt -m yum -a "name=httpd state=present" -b
 ansible web -i inventory.txt -m service -a "name=httpd state=started" -b
 cat inventory.txt
+
+- name: install the httpd and then start
+  hosts: all
+  become: yes
+  tasks:
+    - name: install the httpd
+      yum:
+        name: httpd
+        state: present
+    - name:
+      service:
+        name: httpd
+        state: started
+
+
+
   
 
 
