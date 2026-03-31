@@ -40,6 +40,103 @@ execute command - ansible-playbook -i inventory.txt newplay.yaml
         name: httpd
         state: started
 
+-------------------------------------
+
+- name: uninstall the httpd
+  hosts: all
+  become: yes
+  tasks:
+    - name: install the httpd
+      yum:
+        name: httpd
+        state: absent
+
+---------------------------------------
+
+- name: install the httpd and then start
+  hosts: all
+  become: yes
+  tasks:
+    - name: install the httpd
+      yum:
+        name: httpd
+        state: present
+    - name: start the service 
+      service:
+        name: httpd
+        state: started
+    - name: copy the index.html
+      copy:
+         src: index.html
+         dest: /var/www/html/
+
+---------------------------------------------------
+
+- name: Install Java on all servers
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install Java (Debian/Ubuntu)
+      yum:
+        name: openjdk-17-jdk
+        state: present
+
+    - name: Verify Java Installation
+      command: java -version
+      register: java_output
+
+    - name: Display Java Version
+      debug:
+        var: java_output.stderr
+
+-----------------------------------------------------------
+
+---
+- name: Install Python on all servers
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install Python (RHEL/CentOS/Amazon Linux)
+      yum:
+        name: python3
+        state: present
+
+    - name: Verify Python Installation
+      command: python3 --version
+      register: python_output
+
+    - name: Display Python Version
+      debug:
+        var: python_output.stdout
+
+--------------------------------------------
+
+- name: Install MySQL on all servers
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: Install MySQL Server
+      yum:
+        name: mysql-server
+        state: present
+
+    - name: Start MySQL Service
+      service:
+        name: mysqld
+        state: started
+        enabled: yes
+
+    - name: Verify MySQL Installation
+      command: mysql --version
+      register: mysql_output
+
+    - name: Display MySQL Version
+      debug:
+        var: mysql_output.stdout
+
 
 
   
