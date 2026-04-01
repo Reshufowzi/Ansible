@@ -137,6 +137,38 @@ execute command - ansible-playbook -i inventory.txt newplay.yaml
       debug:
         var: mysql_output.stdout
 
+-----------------------------------
+
+Ansible roles 
+create the Ansible role 
+command ->   ansible-galaxy init myrole
+----------------
+create the yaml file for the role - newfile.yaml
+-------------------------------------------
+- name: Install Java on all servers
+  hosts: all
+  become: yes
+  roles:
+    - myrole
+
+-------------------------------------
+
+role --> tasks --> main.yml
+
+- name: install the httpd
+  yum:
+    name: httpd
+    state: present
+
+----------------------------------
+
+ansiblle-playbook -i inventory.txt newfile.yaml
+
+--------------------------------------------
+
+
+
+
 
 
   
