@@ -25,12 +25,12 @@ sudo yum update -y
 sudo yum install python3-pip -y
 ```
 
-# install the pageant - upload the key
-# putty - allow agent port forwarding 
+### install the pageant - upload the key
+### putty - allow agent port forwarding 
 
-# [web]
-# 172.31.89.251
-# 172.31.90.183
+### [web]
+### 172.31.89.251
+### 172.31.90.183
 
 ```
 vi inventory.txt
@@ -50,9 +50,9 @@ ansible web -i inventory.txt -m service -a "name=httpd state=started" -b
 ```
 cat inventory.txt
 ```
-# create the playbook newplay.yaml
+### create the playbook newplay.yaml
 
-# execute command - 
+### execute command - 
 
 ```
 ansible-playbook -i inventory.txt newplay.yaml
