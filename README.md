@@ -192,6 +192,23 @@ ansible-galaxy init myrole
 ansiblle-playbook -i inventory.txt newfile.yaml
 ```
 
+## vault 
+
+```
+ansible-vault create mynew.yaml
+```
+```
+ansible-vault encrypt mynew.yaml
+```
+```
+ansible-vault decrypt mynew.yaml
+```
+```
+ansible-playbook -i inventory.txt mynew.yaml --ask-vault-pass
+```
+
+
+
 
 
 
